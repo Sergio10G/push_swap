@@ -6,7 +6,7 @@
 /*   By: sdiez-ga <sdiez-ga@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 18:57:16 by sdiez-ga          #+#    #+#             */
-/*   Updated: 2022/01/25 20:27:09 by sdiez-ga         ###   ########.fr       */
+/*   Updated: 2022/01/26 18:11:36 by sdiez-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int	parse_nums(int argc, char **argv, t_list **a)
 {
 	int		i;
 	int		j;
-	int		num;
 	char	**nums;
 
 	i = 1;
@@ -28,13 +27,7 @@ int	parse_nums(int argc, char **argv, t_list **a)
 		j = 0;
 		while (nums[j])
 		{
-			num = ft_atoi(nums[j]);
-			if (num == 0 && !str_is_zero(nums[j]))
-				error();
-			if (!*a)
-				*a = ft_lstnew(num);
-			else
-				ft_lstadd_back(a, ft_lstnew(num));
+			process_num(ft_atoi(nums[j]), nums, a);
 			j++;
 		}
 		free_matrix(nums);
@@ -43,6 +36,41 @@ int	parse_nums(int argc, char **argv, t_list **a)
 		i++;
 	}
 	return (ft_lstsize(*a));
+}
+
+void	process_num(int num, char **nums, t_list **a)
+{
+	if (num == 0 && !str_is_zero(nums[j]))
+	{
+		ft_lstclear(a);
+		free_matrix(nums);
+		error();
+	}
+	if (!*a)
+		*a = ft_lstnew(num);
+	else
+		ft_lstadd_back(a, ft_lstnew(num));
+}
+
+int	check_order_rpt(t_list **a)
+{
+	t_list	*lst;
+	int		unordered;
+
+	lst = *a;
+	while (lst && lst->next != 0)
+	{
+		if (ft_lst_contains(lst->next, lst->content))
+			error();
+		lst = lst->next;
+	}
+	unordered = 0;
+	lst = *a;
+	while (lst && lst->next != 0)
+	{
+		
+	}
+
 }
 
 void	free_matrix(char **mat)
