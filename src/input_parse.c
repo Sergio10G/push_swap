@@ -35,6 +35,7 @@ int	parse_nums(int argc, char **argv, t_list **a)
 			error();
 		i++;
 	}
+	check_order_rpt(a);
 	return (ft_lstsize(*a));
 }
 
@@ -52,10 +53,9 @@ void	process_num(int num, char **nums, t_list **a)
 		ft_lstadd_back(a, ft_lstnew(num));
 }
 
-int	check_order_rpt(t_list **a)
+void	check_order_rpt(t_list **a)
 {
 	t_list	*lst;
-	int		unordered;
 
 	lst = *a;
 	while (lst && lst->next != 0)
@@ -64,13 +64,14 @@ int	check_order_rpt(t_list **a)
 			error();
 		lst = lst->next;
 	}
-	unordered = 0;
 	lst = *a;
 	while (lst && lst->next != 0)
 	{
-		
+		if (lst->content > lst->next->content)
+			return;
+		lst = lst->next;
 	}
-
+	error();
 }
 
 void	free_matrix(char **mat)
