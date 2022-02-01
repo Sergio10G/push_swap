@@ -6,7 +6,7 @@
 /*   By: sdiez-ga <sdiez-ga@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 18:57:16 by sdiez-ga          #+#    #+#             */
-/*   Updated: 2022/01/26 18:11:36 by sdiez-ga         ###   ########.fr       */
+/*   Updated: 2022/01/31 19:01:47 by sdiez-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	parse_nums(int argc, char **argv, t_list **a)
 		j = 0;
 		while (nums[j])
 		{
-			process_num(ft_atoi(nums[j]), nums, a);
+			process_num(ft_atoi(nums[j]), nums, j, a);
 			j++;
 		}
 		free_matrix(nums);
@@ -39,9 +39,9 @@ int	parse_nums(int argc, char **argv, t_list **a)
 	return (ft_lstsize(*a));
 }
 
-void	process_num(int num, char **nums, t_list **a)
+void	process_num(int num, char **nums, int num_index, t_list **a)
 {
-	if (num == 0 && !str_is_zero(nums[j]))
+	if (num == 0 && !str_is_zero(nums[num_index]))
 	{
 		ft_lstclear(a);
 		free_matrix(nums);
