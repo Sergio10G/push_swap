@@ -6,7 +6,7 @@
 /*   By: sdiez-ga <sdiez-ga@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 20:35:16 by sdiez-ga          #+#    #+#             */
-/*   Updated: 2022/01/31 19:04:18 by sdiez-ga         ###   ########.fr       */
+/*   Updated: 2022/02/01 19:40:07 by sdiez-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	print_content(void *lst);
 int	main(int argc, char **argv)
 {
 	t_list	*a;
-	//t_list	*b;
+	t_list	*b;
 
 	if (argc < 2)
 		error();
@@ -27,9 +27,11 @@ int	main(int argc, char **argv)
 	//write(1, "\n", 1);
 	void	(*print_content_ptr)(void *) = &print_content;
 	ft_lstiter(a, print_content_ptr);
-	swap_a(&a);
+	push_b(&a, &b);
 	write(1, "-\n", 2);
 	ft_lstiter(a, print_content_ptr);
+	write(1, "=\n", 2);
+	ft_lstiter(b, print_content_ptr);
 }
 
 void	print_content(void *lst)

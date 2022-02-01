@@ -1,43 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mv_rotate.c                                        :+:      :+:    :+:   */
+/*   mv_reverse_rotate.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sdiez-ga <sdiez-ga@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/31 19:29:24 by sdiez-ga          #+#    #+#             */
-/*   Updated: 2022/02/01 17:18:20 by sdiez-ga         ###   ########.fr       */
+/*   Created: 2022/02/01 17:11:37 by sdiez-ga          #+#    #+#             */
+/*   Updated: 2022/02/01 17:30:46 by sdiez-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	rotate(t_list **list)
+void	reverse_rotate(t_list **list)
 {
-	t_list	*lst_first;
+	t_list	*last;
+	t_list	*s2last;
 
-	lst_first = *list;
-	*list = (*list)->next;
-	lst_first->next = 0;
-	ft_lstadd_back(list, list_first);
+	last = ft_lstlast(*list);
+	s2last = *list;
+	while (s2last->next != last)
+		s2last = s2last->next;
+	s2last->next = 0;
+	ft_lstadd_front(list, last);
 }
 
-void	rotate_a(t_list **a)
+void	reverse_rotate_a(t_list **a)
 {
 	if (ft_lstsize(*a) < 2)
 		return ;
-	rotate(a);
+	reverse_rotate(a);
 }
 
-void	rotate_b(t_list **b)
+void	reverse_rotate_b(t_list **b)
 {
 	if (ft_lstsize(*b) < 2)
 		return ;
-	rotate(b);
+	reverse_rotate(b);
 }
 
-void	rotate_ab(t_list **a, t_list **b)
+void	reverse_rotate_ab(t_list **a, t_list **b)
 {
-	rotate_a(a);
-	rotate_b(b);
+	reverse_rotate_a(a);
+	reverse_rotate_b(b);
 }
