@@ -6,7 +6,7 @@
 /*   By: sdiez-ga <sdiez-ga@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 18:32:54 by sdiez-ga          #+#    #+#             */
-/*   Updated: 2022/02/01 18:22:55 by sdiez-ga         ###   ########.fr       */
+/*   Updated: 2022/02/02 17:15:39 by sdiez-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	swap_a(t_list **a)
 	if (ft_lstsize(*a) < 2)
 		return ;
 	swap(a);
+	ft_putstr("sa\n");
 }
 
 void	swap_b(t_list **b)
@@ -34,6 +35,7 @@ void	swap_b(t_list **b)
 	if (ft_lstsize(*b) < 2)
 		return ;
 	swap(b);
+	ft_putstr("sb\n");
 }
 
 void	swap_ab(t_list **a, t_list **b)
@@ -42,4 +44,5 @@ void	swap_ab(t_list **a, t_list **b)
 		return ;
 	swap(a);
 	swap(b);
+	ft_putstr("ss\n");
 }

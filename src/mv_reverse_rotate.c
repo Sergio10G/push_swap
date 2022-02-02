@@ -6,7 +6,7 @@
 /*   By: sdiez-ga <sdiez-ga@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 17:11:37 by sdiez-ga          #+#    #+#             */
-/*   Updated: 2022/02/01 17:30:46 by sdiez-ga         ###   ########.fr       */
+/*   Updated: 2022/02/02 17:18:02 by sdiez-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	reverse_rotate_a(t_list **a)
 	if (ft_lstsize(*a) < 2)
 		return ;
 	reverse_rotate(a);
+	ft_putstr("rra\n");
 }
 
 void	reverse_rotate_b(t_list **b)
@@ -37,10 +38,12 @@ void	reverse_rotate_b(t_list **b)
 	if (ft_lstsize(*b) < 2)
 		return ;
 	reverse_rotate(b);
+	ft_putstr("rrb\n");
 }
 
 void	reverse_rotate_ab(t_list **a, t_list **b)
 {
 	reverse_rotate_a(a);
 	reverse_rotate_b(b);
+	ft_putstr("rrr\n");
 }

@@ -6,7 +6,7 @@
 /*   By: sdiez-ga <sdiez-ga@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 20:35:16 by sdiez-ga          #+#    #+#             */
-/*   Updated: 2022/02/01 19:40:07 by sdiez-ga         ###   ########.fr       */
+/*   Updated: 2022/02/02 17:32:52 by sdiez-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	main(int argc, char **argv)
 	t_list	*b;
 
 	if (argc < 2)
-		error();
+		exit(0);
 	parse_nums(argc, argv, &a);
 	//ft_putnbr_fd(parse_nums(argc, argv, &a), 1);
 	//write(1, "\n", 1);

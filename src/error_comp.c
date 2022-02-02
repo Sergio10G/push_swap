@@ -6,7 +6,7 @@
 /*   By: sdiez-ga <sdiez-ga@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 19:08:36 by sdiez-ga          #+#    #+#             */
-/*   Updated: 2022/01/25 19:37:37 by sdiez-ga         ###   ########.fr       */
+/*   Updated: 2022/02/02 17:27:17 by sdiez-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,10 @@
 void	error()
 {
 	write(1, "Error\n", 6);
+	exit(1);
+}
+
+void	error_quiet()
+{
 	exit(1);
 }
