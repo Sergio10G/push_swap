@@ -6,7 +6,7 @@
 /*   By: sdiez-ga <sdiez-ga@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 18:57:16 by sdiez-ga          #+#    #+#             */
-/*   Updated: 2022/02/02 17:30:53 by sdiez-ga         ###   ########.fr       */
+/*   Updated: 2022/02/03 17:15:26 by sdiez-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	check_order_rpt(t_list **a)
 	while (lst && lst->next != 0)
 	{
 		if (lst->content > lst->next->content)
-			return;
+			return ;
 		lst = lst->next;
 	}
 	exit(0);

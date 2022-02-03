@@ -6,7 +6,7 @@
 /*   By: sdiez-ga <sdiez-ga@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 20:35:16 by sdiez-ga          #+#    #+#             */
-/*   Updated: 2022/02/02 17:32:52 by sdiez-ga         ###   ########.fr       */
+/*   Updated: 2022/02/03 17:45:39 by sdiez-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,10 @@ int	main(int argc, char **argv)
 	//write(1, "\n", 1);
 	void	(*print_content_ptr)(void *) = &print_content;
 	ft_lstiter(a, print_content_ptr);
-	push_b(&a, &b);
+	write(1, "-\n", 2);
+	arrange(&a, &b);
 	write(1, "-\n", 2);
 	ft_lstiter(a, print_content_ptr);
-	write(1, "=\n", 2);
-	ft_lstiter(b, print_content_ptr);
 }
 
 void	print_content(void *lst)
