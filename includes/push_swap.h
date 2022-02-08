@@ -6,7 +6,7 @@
 /*   By: sdiez-ga <sdiez-ga@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 18:57:35 by sdiez-ga          #+#    #+#             */
-/*   Updated: 2022/02/03 17:40:17 by sdiez-ga         ###   ########.fr       */
+/*   Updated: 2022/02/08 18:36:52 by sdiez-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,5 @@ void	ft_putstr(char *str);
 
 	/*	algorithm.c functions	*/
 void	arrange(t_list **a, t_list **b);
+int		is_sorted(t_list **a);
 #endif
