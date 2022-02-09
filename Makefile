@@ -40,7 +40,7 @@ RESET		=	\033[1;0m
 
 MAKEFLAGS	+=	--silent
 
-%.o			:	$.c
+%.o			:	%.c
 				$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME)		:	$(OBJS)
