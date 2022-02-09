@@ -6,7 +6,7 @@
 /*   By: sdiez-ga <sdiez-ga@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 18:57:35 by sdiez-ga          #+#    #+#             */
-/*   Updated: 2022/02/08 18:36:52 by sdiez-ga         ###   ########.fr       */
+/*   Updated: 2022/02/09 20:16:07 by sdiez-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,10 @@
 
 
 	/* list_funcs.c functions */
-int	ft_lst_contains(t_list *head, int n);
+int		ft_lst_contains(t_list *head, int n);
+int		lst_is_ordered(t_list **lst);
+int		get_min_index(t_list **a);
+void	rotate_min_to_top(t_list **a);
 
 	/* input_parse.c functions */
 int		parse_nums(int argc, char **argv, t_list **a);
@@ -58,10 +61,11 @@ void	reverse_rotate_a(t_list **a);
 void	reverse_rotate_b(t_list **b);
 void	reverse_rotate_ab(t_list **a, t_list **b);
 
+	/* arrange_small.c functions */
+void	arrange_3(t_list **a);
+void	arrange_10(t_list **a, t_list **b);
+
 	/* utils.c functions */
 void	ft_putstr(char *str);
 
-	/*	algorithm.c functions	*/
-void	arrange(t_list **a, t_list **b);
-int		is_sorted(t_list **a);
 #endif
