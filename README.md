@@ -1,2 +1,2 @@
 # push_swap
-My 5th project during 42 cursus.
+My 5th project during 42 cursus. Project finished, waiting for eval...
