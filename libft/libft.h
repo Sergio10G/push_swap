@@ -6,7 +6,7 @@
 /*   By: sdiez-ga <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 15:51:04 by sdiez-ga          #+#    #+#             */
-/*   Updated: 2022/01/25 20:31:35 by sdiez-ga         ###   ########.fr       */
+/*   Updated: 2022/10/31 17:19:02 by sdiez-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 typedef struct s_list
 {
 	int				content;
+	int				flag;
 	struct s_list	*next;
 }					t_list;
 

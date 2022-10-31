@@ -6,11 +6,12 @@
 /*   By: sdiez-ga <sdiez-ga@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 20:06:44 by sdiez-ga          #+#    #+#             */
-/*   Updated: 2022/02/09 19:49:03 by sdiez-ga         ###   ########.fr       */
+/*   Updated: 2022/10/31 20:13:02 by sdiez-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
+#include <stdio.h>
 
 int	ft_lst_contains(t_list *head, int n)
 {
@@ -44,26 +45,25 @@ int	lst_is_ordered(t_list **lst)
 
 int	get_min_index(t_list **a)
 {
-	t_list	*item;
-	int		min_idx;
+	t_list	*cur_lst;
 	int		min;
+	int		min_idx;
 	int		i;
 
-	if (ft_asize(*a) < 2)
-		return ;
-	item = (*a)->next;
-	min_idx = 0;
+	cur_lst = *a;
 	min = (*a)->content;
-	i = 0;
-	while (item)
+	min_idx = 0;
+	cur_lst = cur_lst->next;
+	i = 1;
+	while (cur_lst)
 	{
-		if (item->content < min)
+		if (cur_lst->content < min)
 		{
-			min = item->content;
+			min = cur_lst->content;
 			min_idx = i;
 		}
-		item = item->next;
 		i++;
+		cur_lst = cur_lst->next;
 	}
 	return (min_idx);
 }
@@ -71,21 +71,21 @@ int	get_min_index(t_list **a)
 void	rotate_min_to_top(t_list **a)
 {
 	int		min_idx;
-	void	(*rotate_ptr)(t_list **);
+	void	(*rot_ptr)(t_list **);
 
-	if (ft_asize(*a) < 2)
+	if (ft_lstsize(*a) < 2)
 		return ;
 	min_idx = get_min_index(a);
-	if (min_idx <= ft_asize(*a) - min_idx)
+	if (min_idx <= ft_lstsize(*a) / 2)
 		rot_ptr = &rotate_a;
 	else
 	{
 		rot_ptr = &reverse_rotate_a;
-		min_idx = ft_lstsize(*lst) - min_idx;
+		min_idx = ft_lstsize(*a) - min_idx;
 	}
 	while (min_idx != 0)
 	{
-		(*rot_ptr)(lst);
+		(*rot_ptr)(a);
 		min_idx--;
 	}
 }

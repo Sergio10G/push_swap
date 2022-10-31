@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   arrange_small.c                                    :+:      :+:    :+:   */
+/*   algorithm.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sdiez-ga <sdiez-ga@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/09 17:16:56 by sdiez-ga          #+#    #+#             */
-/*   Updated: 2022/02/09 19:48:48 by sdiez-ga         ###   ########.fr       */
+/*   Created: 2022/02/10 16:58:27 by sdiez-ga          #+#    #+#             */
+/*   Updated: 2022/10/31 20:08:12 by sdiez-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,39 @@ void	arrange_10(t_list **a, t_list **b)
 	arrange_3(a);
 	while (ft_lstsize(*b) > 0)
 		push_a(a, b);
+}
+
+void	arrange_big(t_list **a, t_list **b)
+{
+	int		size;
+	int		laps;
+	int		mask;
+
+	laps = get_laps(get_biggest_num(*a));
+	mask = 1;
+	while (laps)
+	{
+		size = ft_lstsize(*a);
+		while (size--)
+		{
+			if (((*a)->content & mask) == 0)
+				push_b(a, b);
+			else
+				rotate_a(a);
+		}
+		while (*b)
+			push_a(a, b);
+		mask <<= 1;
+		laps--;
+	}
+}
+
+void	arrange(t_list **a, t_list **b)
+{
+	if (ft_lstsize(*a) == 3)
+		arrange_3(a);
+	if (ft_lstsize(*a) <= 10)
+		arrange_10(a, b);
+	else
+		arrange_big(a, b);
 }
