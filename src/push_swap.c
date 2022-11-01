@@ -22,6 +22,7 @@ int	main(int argc, char **argv)
 	parse_nums(argc, argv, &a);
 	normalize_list(a);
 	arrange(&a, &b);
+	ft_lstclear(&a);
 }
 
 void	print_content(void *lst)
