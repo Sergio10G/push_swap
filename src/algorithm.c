@@ -73,9 +73,11 @@ void	arrange_big(t_list **a, t_list **b)
 
 void	arrange(t_list **a, t_list **b)
 {
+	if (ft_lstsize(*a) == 2)
+		swap_a(a);
 	if (ft_lstsize(*a) == 3)
 		arrange_3(a);
-	if (ft_lstsize(*a) <= 10)
+	else if (ft_lstsize(*a) <= 10)
 		arrange_10(a, b);
 	else
 		arrange_big(a, b);
