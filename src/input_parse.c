@@ -6,7 +6,7 @@
 /*   By: sdiez-ga <sdiez-ga@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 18:57:16 by sdiez-ga          #+#    #+#             */
-/*   Updated: 2022/02/03 17:15:26 by sdiez-ga         ###   ########.fr       */
+/*   Updated: 2022/11/02 12:51:04 by sdiez-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,17 @@ int	parse_nums(int argc, char **argv, t_list **a)
 	{
 		nums = ft_split(argv[i], ' ');
 		if (!nums)
-			error();
+			error_free(a);
 		j = 0;
 		while (nums[j])
 		{
+			num_in_int_range(a, nums[j]);
 			process_num(ft_atoi(nums[j]), nums, j, a);
 			j++;
 		}
 		free_matrix(nums);
 		if (j == 0)
-			error();
+			error_free(a);
 		i++;
 	}
 	check_order_rpt(a);
@@ -43,14 +44,10 @@ void	process_num(int num, char **nums, int num_index, t_list **a)
 {
 	if (num == 0 && !str_is_zero(nums[num_index]))
 	{
-		ft_lstclear(a);
 		free_matrix(nums);
-		error();
+		error_free(a);
 	}
-	if (!*a)
-		*a = ft_lstnew(num);
-	else
-		ft_lstadd_back(a, ft_lstnew(num));
+	ft_lstadd_back(a, ft_lstnew(num));
 }
 
 void	check_order_rpt(t_list **a)
@@ -61,7 +58,7 @@ void	check_order_rpt(t_list **a)
 	while (lst && lst->next != 0)
 	{
 		if (ft_lst_contains(lst->next, lst->content))
-			error();
+			error_free(a);
 		lst = lst->next;
 	}
 	lst = *a;

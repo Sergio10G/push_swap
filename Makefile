@@ -6,14 +6,18 @@
 #    By: sdiez-ga <sdiez-ga@student.42madrid>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/01 19:45:21 by sdiez-ga          #+#    #+#              #
-#    Updated: 2022/10/31 18:27:12 by sdiez-ga         ###   ########.fr        #
+#    Updated: 2022/11/02 15:10:09 by sdiez-ga         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=	push_swap
 
-SRCS		=	src/push_swap.c				\
-				src/input_parse.c			\
+CHECKER		=	checker
+
+PS_SRC		=	src/push_swap.c
+
+SRCS		=	src/input_parse.c			\
+				src/input_parse_extra.c		\
 				src/algorithm.c				\
 				src/list_funcs.c			\
 				src/utils.c					\
@@ -23,9 +27,15 @@ SRCS		=	src/push_swap.c				\
 				src/mv_reverse_rotate.c		\
 				src/error_comp.c
 
+CHK_SRC		=	src/checker.c	
+
 LIBFT		=	libft/libft.a
 
+PS_OBJS		=	$(PS_SRC:.c=.o)
+
 OBJS		=	$(SRCS:.c=.o)
+
+CHK_OBJS	=	$(CHK_SRC:.c=.o)
 
 CC			=	gcc
 
@@ -43,27 +53,48 @@ MAKEFLAGS	+=	--silent
 %.o			:	%.c
 				$(CC) $(CFLAGS) -c $< -o $@
 
-$(NAME)		:	$(OBJS)
-				@echo "$(BLUE)Compiling...$(RESET)"
+$(NAME)		:	$(LIBFT) $(OBJS) $(PS_OBJS)
+				@echo "$(BLUE)Compiling push_swap...$(RESET)"
+				$(CC) $(CFLAGS) -o $(NAME) $(PS_OBJS) $(OBJS) $(LIBFT)
+				@echo "$(GREEN)push_swap succesfully compiled$(RESET)"
+
+$(LIBFT)	:
+				@echo "$(PINK)Compiling libft...$(RESET)"
 				make -C libft/ all -s
 				make -C libft/ bonus -s
 				@echo "$(PINK)All and Bonus made for Libft!$(RESET)"
-				$(CC) $(CFLAGS) -o $(NAME) $(OBJS) libft/libft.a -fsanitize=address
-				@echo "$(GREEN)push_swap succesfully compiled$(RESET)"
 
-all			:	$(NAME)
+$(CHECKER)	:	$(LIBFT) $(OBJS) $(CHK_OBJS)
+				@echo "$(BLUE)Compiling checker...$(RESET)"
+				$(CC) $(CFLAGS) -o $(CHECKER) $(CHK_OBJS) $(OBJS) $(LIBFT)
+				@echo "$(GREEN)checker succesfully compiled$(RESET)"
+
+all			:	$(NAME) $(CHECKER)
 
 clean		:	
 				make -C libft/ clean -s
-				@echo "$(BLUE)libft objs cleaned!$(RESET)"
+				@echo "$(PINK)libft cleaned!$(RESET)"
 				$(RM) $(OBJS)
+ifneq ("$(wildcard $(PS_OBJS))","")
+				$(RM) $(PS_OBJS)
 				@echo "$(BLUE)push_swap objs cleaned!$(RESET)"
+endif
+ifneq ("$(wildcard $(CHK_OBJS))","")
+				$(RM) $(CHK_OBJS)
+				@echo "$(BLUE)checker objs cleaned!$(RESET)"
+endif
 
 fclean		:	clean
 				make -C libft/ fclean -s
-				@echo "$(BLUE)libft.a removed!$(RESET)"
+				@echo "$(PINK)libft.a removed!$(RESET)"
+ifneq ("$(wildcard $(NAME))","")
 				$(RM) $(NAME)
 				@echo "$(BLUE)push_swap removed!$(RESET)"
+endif
+ifneq ("$(wildcard $(CHECKER))","")
+				$(RM) checker
+				@echo "$(BLUE)checker removed!$(RESET)"
+endif
 
 re			:	fclean all
 

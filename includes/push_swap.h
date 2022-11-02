@@ -6,7 +6,7 @@
 /*   By: sdiez-ga <sdiez-ga@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 18:57:35 by sdiez-ga          #+#    #+#             */
-/*   Updated: 2022/10/31 20:14:55 by sdiez-ga         ###   ########.fr       */
+/*   Updated: 2022/11/02 14:35:59 by sdiez-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,10 @@
 # include <unistd.h>
 # include <stdlib.h>
 
+//	Macros
+
+# define CHK_BUF_SIZE 1001
+
 //	Functions
 
 	/* input_parse.c functions */
@@ -27,6 +31,9 @@ void	check_order_rpt(t_list **a);
 void	free_matrix(char **mat);
 int		str_is_zero(char *num);
 
+	/* input_parse.c functions */
+void	num_in_int_range(t_list **a, char *num_str);
+
 	/* list_funcs.c functions */
 int		ft_lst_contains(t_list *head, int n);
 int		lst_is_ordered(t_list **lst);
@@ -35,6 +42,7 @@ void	rotate_min_to_top(t_list **a);
 
 	/* error_comp.c functions */
 void	error(void);
+void	error_free(t_list **lst);
 void	error_quiet(void);
 
 	/* mv_swap.c functions */
@@ -70,5 +78,11 @@ void	normalize_list(t_list *lst);
 t_list	*fetch_lowest_num(t_list *lst);
 int		get_biggest_num(t_list *lst);
 int		get_laps(int max_num);
+
+	/* checker.c functions */
+void	read_input(char **input);
+void	concat_strs(const char *s1, char **s2);
+void	follow_instructions(t_list **a, t_list **b, char *input);
+void	recognize_movement(char *movement, t_list **a, t_list **b);
 
 #endif
