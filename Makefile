@@ -6,7 +6,7 @@
 #    By: sdiez-ga <sdiez-ga@student.42madrid>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/01 19:45:21 by sdiez-ga          #+#    #+#              #
-#    Updated: 2022/11/02 15:10:09 by sdiez-ga         ###   ########.fr        #
+#    Updated: 2022/11/03 20:26:21 by sdiez-ga         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,8 @@ SRCS		=	src/input_parse.c			\
 				src/mv_reverse_rotate.c		\
 				src/error_comp.c
 
-CHK_SRC		=	src/checker.c	
+CHK_SRC		=	src/checker.c				\
+				src/checker_utils.c
 
 LIBFT		=	libft/libft.a
 
@@ -39,7 +40,7 @@ CHK_OBJS	=	$(CHK_SRC:.c=.o)
 
 CC			=	gcc
 
-CFLAGS		=	-Wall -Werror -Wextra
+CFLAGS		=	-Wall -Werror -Wextra -fsanitize=address
 
 RM			=	rm -f
 
@@ -72,9 +73,13 @@ $(CHECKER)	:	$(LIBFT) $(OBJS) $(CHK_OBJS)
 all			:	$(NAME) $(CHECKER)
 
 clean		:	
+ifneq ("$(wildcard libft/*.o)","")
 				make -C libft/ clean -s
 				@echo "$(PINK)libft cleaned!$(RESET)"
+endif
+ifneq ("$(wildcard $(OBJS))","")
 				$(RM) $(OBJS)
+endif
 ifneq ("$(wildcard $(PS_OBJS))","")
 				$(RM) $(PS_OBJS)
 				@echo "$(BLUE)push_swap objs cleaned!$(RESET)"
@@ -85,8 +90,10 @@ ifneq ("$(wildcard $(CHK_OBJS))","")
 endif
 
 fclean		:	clean
+ifneq ("$(wildcard $(LIBFT))","")
 				make -C libft/ fclean -s
 				@echo "$(PINK)libft.a removed!$(RESET)"
+endif
 ifneq ("$(wildcard $(NAME))","")
 				$(RM) $(NAME)
 				@echo "$(BLUE)push_swap removed!$(RESET)"

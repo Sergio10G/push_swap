@@ -6,7 +6,7 @@
 /*   By: sdiez-ga <sdiez-ga@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 18:57:16 by sdiez-ga          #+#    #+#             */
-/*   Updated: 2022/11/02 12:51:04 by sdiez-ga         ###   ########.fr       */
+/*   Updated: 2022/11/03 20:50:51 by sdiez-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,29 +23,34 @@ int	parse_nums(int argc, char **argv, t_list **a)
 	{
 		nums = ft_split(argv[i], ' ');
 		if (!nums)
-			error_free(a);
+			error_free_lst(a);
 		j = 0;
 		while (nums[j])
 		{
-			num_in_int_range(a, nums[j]);
-			process_num(ft_atoi(nums[j]), nums, j, a);
+			process_num(nums, j, a);
 			j++;
 		}
 		free_matrix(nums);
 		if (j == 0)
-			error_free(a);
+			error_free_lst(a);
 		i++;
 	}
 	check_order_rpt(a);
 	return (ft_lstsize(*a));
 }
 
-void	process_num(int num, char **nums, int num_index, t_list **a)
+void	process_num(char **nums, int num_index, t_list **a)
 {
-	if (num == 0 && !str_is_zero(nums[num_index]))
+	int	num;
+
+	num = ft_atoi(nums[num_index]);
+	if (!num_in_int_range(nums[num_index]) || \
+		(num == 0 && !str_is_zero(nums[num_index])) || \
+		(ft_strnstr(nums[num_index], ".", ft_strlen(nums[num_index])) != 0) || \
+		!is_all_numeric(nums[num_index]))
 	{
 		free_matrix(nums);
-		error_free(a);
+		error_free_lst(a);
 	}
 	ft_lstadd_back(a, ft_lstnew(num));
 }
@@ -58,7 +63,7 @@ void	check_order_rpt(t_list **a)
 	while (lst && lst->next != 0)
 	{
 		if (ft_lst_contains(lst->next, lst->content))
-			error_free(a);
+			error_free_lst(a);
 		lst = lst->next;
 	}
 	lst = *a;

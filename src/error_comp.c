@@ -18,11 +18,22 @@ void	error(void)
 	exit(1);
 }
 
-void	error_free(t_list **lst)
+void	error_free_lst(t_list **lst)
 {
-	ft_lstclear(lst);
-	write(2, "Error\n", 6);
-	exit(1);
+	if (*lst)
+		ft_lstclear(lst);
+	error();
+}
+
+void	error_free_chk(t_list **a, t_list **b, char *input)
+{
+	if (*a)
+		ft_lstclear(a);
+	if (*b)
+		ft_lstclear(b);
+	if (input)
+		free(input);
+	error();
 }
 
 void	error_quiet(void)
