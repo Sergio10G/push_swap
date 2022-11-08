@@ -6,7 +6,7 @@
 /*   By: sdiez-ga <sdiez-ga@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 13:08:43 by sdiez-ga          #+#    #+#             */
-/*   Updated: 2022/11/03 20:01:57 by sdiez-ga         ###   ########.fr       */
+/*   Updated: 2022/11/08 12:57:14 by sdiez-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,18 @@ int	main(int argc, char **argv)
 
 	a = 0;
 	b = 0;
+	input = 0;
 	if (argc < 2)
 		exit(0);
-	input = 0;
 	parse_nums(argc, argv, &a);
 	read_input(&input);
-	if (!input)
-		error_free_lst(&a);
 	normalize_list(a);
-	follow_instructions(&a, &b, input);
-	free(input);
-	if (ft_lstsize(b) == 0 && lst_is_ordered(&a))
+	if (input)
+	{
+		follow_instructions(&a, &b, input);
+		free(input);
+	}
+	if (ft_lstsize(b) == 0 && lst_is_ordered(a))
 		ft_putstr("OK\n");
 	else
 		ft_putstr("KO\n");
@@ -52,7 +53,7 @@ void	read_input(char **input)
 		if (!(*input))
 			*input = ft_strdup(tmp_buf);
 		else
-			concat_strs(tmp_buf, input);
+			concat_strs(tmp_buf, i, input);
 	}
 }
 

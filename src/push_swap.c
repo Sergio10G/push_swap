@@ -6,7 +6,7 @@
 /*   By: sdiez-ga <sdiez-ga@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 20:35:16 by sdiez-ga          #+#    #+#             */
-/*   Updated: 2022/11/03 19:59:46 by sdiez-ga         ###   ########.fr       */
+/*   Updated: 2022/11/08 12:32:13 by sdiez-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,11 @@ int	main(int argc, char **argv)
 	a = 0;
 	b = 0;
 	parse_nums(argc, argv, &a);
+	if (lst_is_ordered(a))
+	{
+		ft_lstclear(&a);
+		exit(0);
+	}
 	normalize_list(a);
 	arrange(&a, &b);
 	ft_lstclear(&a);

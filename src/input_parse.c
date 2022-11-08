@@ -6,7 +6,7 @@
 /*   By: sdiez-ga <sdiez-ga@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 18:57:16 by sdiez-ga          #+#    #+#             */
-/*   Updated: 2022/11/03 20:50:51 by sdiez-ga         ###   ########.fr       */
+/*   Updated: 2022/11/08 12:26:35 by sdiez-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	parse_nums(int argc, char **argv, t_list **a)
 			error_free_lst(a);
 		i++;
 	}
-	check_order_rpt(a);
+	check_repeat(a);
 	return (ft_lstsize(*a));
 }
 
@@ -55,25 +55,17 @@ void	process_num(char **nums, int num_index, t_list **a)
 	ft_lstadd_back(a, ft_lstnew(num));
 }
 
-void	check_order_rpt(t_list **a)
+void	check_repeat(t_list **lst)
 {
-	t_list	*lst;
+	t_list	*lst_cur;
 
-	lst = *a;
-	while (lst && lst->next != 0)
+	lst_cur = *lst;
+	while (lst_cur->next)
 	{
-		if (ft_lst_contains(lst->next, lst->content))
-			error_free_lst(a);
-		lst = lst->next;
+		if (ft_lst_contains(lst_cur->next, lst_cur->content))
+			error_free_lst(lst);
+		lst_cur = lst_cur->next;
 	}
-	lst = *a;
-	while (lst && lst->next != 0)
-	{
-		if (lst->content > lst->next->content)
-			return ;
-		lst = lst->next;
-	}
-	exit(0);
 }
 
 void	free_matrix(char **mat)

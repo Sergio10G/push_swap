@@ -6,21 +6,19 @@
 /*   By: sdiez-ga <sdiez-ga@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 18:56:19 by sdiez-ga          #+#    #+#             */
-/*   Updated: 2022/11/03 19:18:06 by sdiez-ga         ###   ########.fr       */
+/*   Updated: 2022/11/08 12:57:06 by sdiez-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	concat_strs(const char *s1, char **s2)
+void	concat_strs(const char *s1, int len_1, char **s2)
 {
 	char	*out;
-	int		len_1;
 	int		i_1;
 	int		len_2;
 	int		i_2;
 
-	len_1 = ft_strlen(s1);
 	len_2 = ft_strlen(*s2);
 	if (!len_1 || !len_2)
 		return ;

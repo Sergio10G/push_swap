@@ -6,7 +6,7 @@
 /*   By: sdiez-ga <sdiez-ga@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 16:58:27 by sdiez-ga          #+#    #+#             */
-/*   Updated: 2022/10/31 20:08:12 by sdiez-ga         ###   ########.fr       */
+/*   Updated: 2022/11/08 12:31:42 by sdiez-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	arrange_3(t_list **a)
 	int	n2;
 	int	n3;
 
-	if (lst_is_ordered(a))
+	if (lst_is_ordered(*a))
 		return ;
 	n1 = (*a)->content;
 	n2 = (*a)->next->content;

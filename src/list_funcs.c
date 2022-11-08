@@ -6,7 +6,7 @@
 /*   By: sdiez-ga <sdiez-ga@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 20:06:44 by sdiez-ga          #+#    #+#             */
-/*   Updated: 2022/10/31 20:13:02 by sdiez-ga         ###   ########.fr       */
+/*   Updated: 2022/11/08 12:31:03 by sdiez-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,15 @@ int	ft_lst_contains(t_list *head, int n)
 	return (0);
 }
 
-int	lst_is_ordered(t_list **lst)
+int	lst_is_ordered(t_list *lst)
 {
 	t_list	*item;
 	int		prev_num;
 
-	if (ft_lstsize(*lst) < 2)
+	if (ft_lstsize(lst) < 2)
 		return (1);
-	prev_num = (*lst)->content;
-	item = (*lst)->next;
+	prev_num = lst->content;
+	item = lst->next;
 	while (item)
 	{
 		if (prev_num > item->content)

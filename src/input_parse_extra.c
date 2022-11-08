@@ -6,13 +6,13 @@
 /*   By: sdiez-ga <sdiez-ga@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 12:32:17 by sdiez-ga          #+#    #+#             */
-/*   Updated: 2022/11/03 20:49:01 by sdiez-ga         ###   ########.fr       */
+/*   Updated: 2022/11/08 12:27:08 by sdiez-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	num_in_int_range(char *num_str)
+int	num_in_int_range(char *num_str)
 {
 	return (!(ft_strlen(num_str) > 11 || \
 		(ft_strlen(num_str) >= 10 && \
@@ -26,7 +26,7 @@ int	is_all_numeric(char *num_str)
 	i = 0;
 	while (num_str[i])
 	{
-		if (!ft_isdigit(num_str[i]))
+		if (num_str[i] != '-' && !ft_isdigit(num_str[i]))
 			return (0);
 		i++;
 	}

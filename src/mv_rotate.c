@@ -6,7 +6,7 @@
 /*   By: sdiez-ga <sdiez-ga@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 19:29:24 by sdiez-ga          #+#    #+#             */
-/*   Updated: 2022/02/02 17:29:00 by sdiez-ga         ###   ########.fr       */
+/*   Updated: 2022/11/08 15:49:32 by sdiez-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	rotate_b(t_list **b)
 
 void	rotate_ab(t_list **a, t_list **b)
 {
-	rotate_a(a);
-	rotate_b(b);
+	rotate(a);
+	rotate(b);
 	ft_putstr("rr\n");
 }
