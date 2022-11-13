@@ -69,8 +69,10 @@ void	follow_instructions(t_list **a, t_list **b, char *input)
 	while (insts[i])
 	{
 		make_move(input, insts[i], a, b);
+		free(insts[i]);
 		i++;
 	}
+	free(insts);
 }
 
 void	make_move(char *input, char *movement, t_list **a, t_list **b)
